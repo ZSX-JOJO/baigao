@@ -8,7 +8,7 @@ import { AdminUserService } from './admin-user.service';
 import { AdminUser } from './dto/admin-user.schema';
 import { INFO_STATUS, ResponseInfoDto } from 'src/common-dto/response-info.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
-import * as crypto from 'crypto';
+import * as crypto from 'node:crypto';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { PowerGuard } from 'src/auth/guard/power.guard';
 import { AdminUserPageDto } from './dto/admin-user-page.dto';

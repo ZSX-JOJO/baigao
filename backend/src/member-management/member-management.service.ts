@@ -107,7 +107,7 @@ export class MemberManagementService {
                 // )
             }
             member.socketId = socketId;
-            return await this.update(member, member._id, req);
+            return await this.update(member, member._id.toString(), req);
         }
     }
 
@@ -213,7 +213,7 @@ export class MemberManagementService {
      * @param rank 
      * @returns 
      */
-    async setMemberRank(UUID: String, rank: DC0008, session?: any): Promise<any> {
+    async setMemberRank(UUID: string, rank: DC0008, session?: any): Promise<any> {
         let role: string[] = [];
         const rankConf = await this.systemConfigService.getDetailByConfSelect(rank);
         if (rankConf && rankConf.confValue) {
@@ -270,7 +270,7 @@ export class MemberManagementService {
      * @param UUID 
      * @returns 
      */
-    async getMemberByUUID(UUID: String, session?: any): Promise<MemberManagement> {
+    async getMemberByUUID(UUID: string, session?: any): Promise<MemberManagement> {
         if (session) {
             return await this.memberManagementModel.findOne({ UUID: UUID }).session(session);
         } else {

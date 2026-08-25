@@ -74,7 +74,7 @@ export class WeChatApiService {
         }
         const fileName = `userQR_${openId}.jpeg`;
         const QRFile = await this.fileUploadService.createByBlob(fileName, data, false);
-        await this.memberManagementService.setMemberQR(memberId, QRFile.url, QRFile._id);
+        await this.memberManagementService.setMemberQR(memberId, QRFile.url, QRFile._id.toString());
         return QRFile.url;
     }
     async getQR(scene: string, openId: string, page: string, tow = false): Promise<any> {

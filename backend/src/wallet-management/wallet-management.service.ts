@@ -308,7 +308,7 @@ export class WalletManagementService {
             const walletLogDto = new WalletLogDto(UUID, amount, balance, req).expenditure();
             walletLogDto.remarks = remarks;
             const res = await new this.walletLogModel(walletLogDto).save({ session });
-            return res._id;
+            return res._id.toString();
         } else {
             throw new Error("钱包不存在");
         }

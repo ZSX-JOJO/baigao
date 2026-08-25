@@ -214,7 +214,7 @@ export class WithdrawalManagementService {
                 withdrawal.statusText = '拒绝';
                 withdrawal.rejectReason = reason;
                 // 更新申请记录
-                res(await this.update(withdrawal, withdrawal._id, req, session))
+                res(await this.update(withdrawal, withdrawal._id.toString(), req, session))
             }).catch(err => {
                 console.log(err);
                 rej(err);
@@ -271,7 +271,7 @@ export class WithdrawalManagementService {
                     throw new Error(result.message);
                 }
                 withdrawal.withdrawalResult = result.resultStr;
-                const data = await this.update(withdrawal, withdrawal._id, req, session);
+                const data = await this.update(withdrawal, withdrawal._id.toString(), req, session);
                 res(data);
             }).catch(err => {
                 console.log(err);

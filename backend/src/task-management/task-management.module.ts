@@ -10,7 +10,7 @@ import { TaskTestController } from './task-test.controller';
 const envConfig = new EnvConfig();
 @Module({
     imports: [
-        RabbitMQModule.forRootAsync(RabbitMQModule, {
+        RabbitMQModule.forRootAsync({
             useFactory: () => {
                 return {
                     exchanges: [

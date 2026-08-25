@@ -6,7 +6,7 @@ export class TreeClassificationDto extends BaseDTO {
 
     constructor(treeClassification: TreeClassification) {
         super();
-        this._id = treeClassification._id;
+        this._id = treeClassification._id.toString();
         this.UUID = treeClassification.UUID;
         this.name = treeClassification.name;
         this.parent = treeClassification.parent;

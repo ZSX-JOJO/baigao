@@ -3,7 +3,7 @@ import { AdminMenu } from "./admin-menu.schema";
 
 export class AdminMenuTreeDto {
     constructor(adminMenu: AdminMenu) {
-        this._id = adminMenu._id;
+        this._id = adminMenu._id.toString();
         this.menuActive = adminMenu.menuActive;
         this.menuName = adminMenu.menuName;
         this.menuPowerTag = adminMenu.menuPowerTag;

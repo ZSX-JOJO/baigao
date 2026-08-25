@@ -35,7 +35,6 @@ export class AuthController {
     @Post('/admin/login')
     @ApiOperation({ description: '后台用户登录' })
     @ApiOkResponse({
-        status: 200,
         description: 'data：成功时返回token，失败时返回失败原因'
     })
     async login(@Body() loginForm: LoginFrom, @Req() req: any): Promise<ResponseInfoDto<String>> {
@@ -64,7 +63,7 @@ export class AuthController {
             if (!member.unionID && unionid) {
                 // 补充unionID
                 member.unionID = unionid;
-                await this.memberManagementService.update(member, member._id, req);
+                await this.memberManagementService.update(member, member._id.toString(), req);
             }
             const singString = encode(JSON.stringify(member));
             this.systemLogService.create('鉴权', `微信登录成功：${decode(singString)}`, req);
@@ -98,7 +97,7 @@ export class AuthController {
             if (!member.unionID && unionid) {
                 // 补充unionID
                 member.unionID = unionid;
-                await this.memberManagementService.update(member, member._id, req);
+                await this.memberManagementService.update(member, member._id.toString(), req);
             }
             const singString = encode(JSON.stringify(member));
             this.systemLogService.create('鉴权', `微信登录成功：${decode(singString)}`, req);

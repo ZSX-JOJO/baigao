@@ -8,7 +8,7 @@ import '@/utils/routerGlobal'
 import '@/styles/global.scss'
 import piniaPersist from 'pinia-plugin-persist'
 import { createPinia } from 'pinia'
-import locale from "element-plus/lib/locale/lang/zh-cn";
+import locale from "element-plus/es/locale/lang/zh-cn";
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 

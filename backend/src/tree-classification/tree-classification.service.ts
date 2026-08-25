@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { ObjectId } from "mongodb";
 import { Model } from 'mongoose';
 import { RedisCacheService } from 'src/redis-cache/redis-cache.service';

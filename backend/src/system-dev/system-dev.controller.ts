@@ -135,7 +135,7 @@ export class SystemDevController {
     @AuthTag('getModuleList')
     @ApiOperation({ description: '获取模型列表' })
     @UseGuards(JwtAuthGuard)
-    async getModuleList(@Query('keyWord') keyWord: String, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
+    async getModuleList(@Query('keyWord') keyWord: string, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {
             rsp.success('获取成功', await this.systemDev.getModuleList(keyWord));
@@ -147,7 +147,7 @@ export class SystemDevController {
     @Get('getModuleFieldList/:moduleUUID')
     @ApiOperation({ description: '获取模型字段列表' })
     @UseGuards(JwtAuthGuard)
-    async getModuleFieldList(@Query('keyWord') keyWord: String, @Param("moduleUUID") moduleUUID: String, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
+    async getModuleFieldList(@Query('keyWord') keyWord: string, @Param("moduleUUID") moduleUUID: string, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {
             rsp.success('获取成功', await this.systemDev.getModuleFieldList(moduleUUID, keyWord));
@@ -159,7 +159,7 @@ export class SystemDevController {
     @Get('getModuleSearchList/:moduleUUID')
     @ApiOperation({ description: '获取模型搜索列表' })
     @UseGuards(JwtAuthGuard)
-    async getModuleSearchList(@Param("moduleUUID") moduleUUID: String, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
+    async getModuleSearchList(@Param("moduleUUID") moduleUUID: string, @Req() req: any): Promise<ResponseInfoDto<ModuleConf[]>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {
             rsp.success('获取成功', await this.systemDev.getModuleSearchList(moduleUUID));
@@ -172,7 +172,7 @@ export class SystemDevController {
     @Post('createCode/:UUID')
     @ApiOperation({ description: '生成代码' })
     @UseGuards(JwtAuthGuard)
-    async createCode(@Param('UUID') UUID: String, @Body() conf: CreateCodeConfDto, @Req() req: any): Promise<ResponseInfoDto<any>> {
+    async createCode(@Param('UUID') UUID: string, @Body() conf: CreateCodeConfDto, @Req() req: any): Promise<ResponseInfoDto<any>> {
         const info = new ResponseInfoDto<any>(req);
         try {
             info.success("成功", await this.systemDev.createCode(UUID, conf));
@@ -184,7 +184,7 @@ export class SystemDevController {
     @Post('createMenu/:UUID')
     @ApiOperation({ description: '挂载菜单' })
     @UseGuards(JwtAuthGuard)
-    async createMenu(@Param('UUID') UUID: String, @Req() req: any): Promise<ResponseInfoDto<any>> {
+    async createMenu(@Param('UUID') UUID: string, @Req() req: any): Promise<ResponseInfoDto<any>> {
         const info = new ResponseInfoDto<any>(req);
         try {
             info.success("成功", await this.systemDev.createMenu(UUID));

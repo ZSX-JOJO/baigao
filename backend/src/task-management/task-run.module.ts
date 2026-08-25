@@ -12,7 +12,7 @@ const envConfig = new EnvConfig();
 @Module({
     imports: [
         ScheduleModule.forRoot(),
-        RabbitMQModule.forRootAsync(RabbitMQModule, {
+        RabbitMQModule.forRootAsync({
             useFactory: () => {
                 return {
                     uri: envConfig.RABBIT_URL,

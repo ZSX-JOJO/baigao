@@ -38,7 +38,7 @@ export class SystemLogService {
         return create.save();
     }
     async removeAll(): Promise<any> {
-        return this.systemLogModel.remove({});
+        return this.systemLogModel.deleteMany({});
     }
     async getPage(pageForm: PageForm): Promise<PageResponseDto<SystemLogDto>> {
         const keyWord = pageForm?.keyWord ? pageForm?.keyWord : '';

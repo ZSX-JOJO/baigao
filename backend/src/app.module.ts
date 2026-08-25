@@ -43,13 +43,11 @@ const envConfig = new EnvConfig();
     }),
     JwtModule.register({
       secret: envConfig.JWT_SECRET,
-      signOptions: { expiresIn: envConfig.JWT_EXPIRES_IN },
+      signOptions: { expiresIn: envConfig.JWT_EXPIRES_IN as any },
     }),
     MongooseModule.forRoot(envConfig.MONGO_DB, {
-      keepAlive: true,
       connectTimeoutMS: 30000,
       socketTimeoutMS: 0,
-      useNewUrlParser: true,
     }),
     BullTaskModule,
     RedisCacheModule,

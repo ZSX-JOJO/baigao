@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 import { SnowflakeIdv1 } from 'simple-flakeid';
 import * as os from 'os';
 

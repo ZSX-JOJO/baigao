@@ -158,7 +158,7 @@ export class AdminMenuService {
             }
             const parent = await this.adminMenuModel.findById(pId);
             adminMenu.parentId = pId;
-            adminMenu.parentDeep = [...parent.parentDeep, parent._id];
+            adminMenu.parentDeep = [...parent.parentDeep, parent._id.toString()];
         } else {
             adminMenu.parentId = "";
             adminMenu.parentDeep = [];

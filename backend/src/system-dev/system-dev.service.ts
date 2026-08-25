@@ -145,7 +145,7 @@ export class SystemDevService {
         delete dto.fieldUUID;
         return await this.moduleSearch.findByIdAndUpdate(id, { $set: { ...dto } });
     }
-    async getModuleList(keyWord: String): Promise<ModuleConf[]> {
+    async getModuleList(keyWord: string): Promise<ModuleConf[]> {
         if (keyWord) {
             return await this.moduleConf.find({
                 $or: [
@@ -158,7 +158,7 @@ export class SystemDevService {
             return await this.moduleConf.find().sort({ addDate: -1 });
         }
     }
-    async getModuleFieldList(moduleUUID: String, keyWord: String): Promise<ModuleField[]> {
+    async getModuleFieldList(moduleUUID: string, keyWord: string): Promise<ModuleField[]> {
         if (keyWord) {
             return await this.moduleField.find({
                 $or: [
@@ -171,10 +171,10 @@ export class SystemDevService {
             return await this.moduleField.find({ moduleUUID }).sort({ sort: 1 });
         }
     }
-    async getModuleSearchList(moduleUUID: String): Promise<ModuleSearch[]> {
+    async getModuleSearchList(moduleUUID: string): Promise<ModuleSearch[]> {
         return await this.moduleSearch.find({ moduleUUID });
     }
-    async createMenu(UUID: String) {
+    async createMenu(UUID: string) {
 
         // 检查menu是否存在
         const moduleConf = await this.moduleConf.findOne({ UUID });
@@ -234,7 +234,7 @@ export class SystemDevService {
             if (moduleConf.parentMenu != '0') {
                 const parentMenu = await this.adminMenuService.getById(moduleConf.parentMenu);
                 adminMenuDto.parentId = moduleConf.parentMenu;
-                adminMenuDto.parentDeep = [...parentMenu.parentDeep, parentMenu._id];
+                adminMenuDto.parentDeep = [...parentMenu.parentDeep, parentMenu._id.toString()];
             }
             // 创建菜单
             const adminMenu = await this.adminMenuService.create(adminMenuDto);
@@ -244,7 +244,7 @@ export class SystemDevService {
                     new AdminMenuDto(
                         item.name,
                         item.tag,
-                        adminMenu._id,
+                        adminMenu._id.toString(),
                         adminMenu.parentDeep.length ? [...adminMenu.parentDeep, adminMenu._id] : []
                     ).api()
                 )
@@ -255,7 +255,7 @@ export class SystemDevService {
                     new AdminMenuDto(
                         item.name,
                         item.tag,
-                        adminMenu._id,
+                        adminMenu._id.toString(),
                         adminMenu.parentDeep.length ? [...adminMenu.parentDeep, adminMenu._id] : []
                     ).btn()
                 )
@@ -264,7 +264,7 @@ export class SystemDevService {
             throw new Error("无需重复挂载");
         }
     }
-    async createCode(UUID: String, createCodeConfDto: CreateCodeConfDto) {
+    async createCode(UUID: string, createCodeConfDto: CreateCodeConfDto) {
         const devTools = new DevTools(createCodeConfDto);
         const moduleConf = await this.moduleConf.findOne({ UUID });
         const fieldList = await this.getModuleFieldList(UUID, "");

@@ -21,7 +21,7 @@ const envConfig = new EnvConfig;
     }),
     JwtModule.register({
       secret: envConfig.JWT_SECRET,
-      signOptions: { expiresIn: envConfig.JWT_EXPIRES_IN },  //s,m,h,d
+      signOptions: { expiresIn: envConfig.JWT_EXPIRES_IN as any },  //s,m,h,d
     }),
     AdminUserModule,
     RolePermissionsModule,

@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 import { AdminUser, AdminUserDocument } from './dto/admin-user.schema';
 import { PageRequestDto } from 'src/common-dto/page-request.dto';
 import { PageResponseDto } from 'src/common-dto/page-response.dto';
-import * as crypto from 'crypto';
+import * as crypto from 'node:crypto';
 import stringRandom from 'string-random';
 import { AdminUserPageDto } from './dto/admin-user-page.dto';
 @Injectable()
