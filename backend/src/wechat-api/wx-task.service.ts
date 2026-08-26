@@ -8,7 +8,7 @@ import { WxMPApiService } from "./wx-mp-api.service";
 /**
  * 任务防抖
  */
-const antiShake: any = {};
+const antiShake: TaskDto<WxTaskCommand>[] = [];
 @Injectable()
 export class WxTaskService implements TaskRunService {
     private readonly logger = new Logger(WxTaskService.name);

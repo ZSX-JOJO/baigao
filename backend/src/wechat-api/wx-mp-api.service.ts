@@ -156,7 +156,7 @@ export class WxMPApiService {
             const run = await this.redisCacheService.get(key)
             if (!run) {
                 await this.getAllMpUserInfo(req);
-                await this.redisCacheService.set(key, true, 30 * 60 * 1000);
+                await this.redisCacheService.set(key, true, 30 * 60);
             }
             wxMpUser = await this.wxMpUserService.getDetailByUnionid(unionid);
             if (wxMpUser) {

@@ -38,7 +38,7 @@ export class WxMpUserService {
         this.logger.warn("删除数据", data);
         if (data) {
             // 删除文件
-            data.fileIds.forEach(k => {
+            (data.fileIds ?? []).forEach(k => {
                 try {
                     this.fileUploadService.delete(k)
                 } catch (error) {

@@ -28,6 +28,7 @@ export class WeChatApiController {
 
     @Get('toMessage/:socketId')
     @ApiOperation({ description: '发送消息' })
+    @UseGuards(JwtAuthGuard)
     async toMessage(@Param('socketId') socketId: string, @Req() req: any): Promise<ResponseInfoDto<any>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {
@@ -39,12 +40,13 @@ export class WeChatApiController {
     }
     @Get('getAllMpUserInfo')
     @ApiOperation({ description: '获取微信公众号用户' })
+    @UseGuards(JwtAuthGuard)
     async getAllMpUserInfo(@Req() req: any): Promise<ResponseInfoDto<any>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {
             rsp.success('获取成功', await this.wxMPApiService.getAllMpUserInfo({ user: { userName: '系统' } }));
         } catch (e) {
-            console.log(e);
+            this.logger.error(e);
             rsp.warring(e.toString());
         }
         return rsp;
@@ -88,6 +90,7 @@ export class WeChatApiController {
     }
     @Get('changeQRStatusToSCAN')
     @ApiOperation({ description: '变更扫码状态到已扫码' })
+    @UseGuards(JwtAuthGuard)
     async changeQRStatusToSCAN(@Query('loginKey') loginKey: string, @Req() req: any): Promise<ResponseInfoDto<String>> {
         const rsp = new ResponseInfoDto<String>(req);
         try {
@@ -217,6 +220,7 @@ export class WeChatApiController {
     @Get('queryPayOrder/:payOrderNum')
     @AuthTag('queryPayOrder')
     @ApiOperation({ description: 'queryPayOrder:查询订单结果' })
+    @UseGuards(JwtAuthGuard, PowerGuard)
     async queryPayOrder(@Param('payOrderNum') payOrderNum: string, @Req() req: any): Promise<ResponseInfoDto<any>> {
         const rsp = new ResponseInfoDto<any>(req);
         try {

@@ -16,6 +16,7 @@ export class SystemConfigController {
     @Post('create')
     @AuthTag('createBindSystemConfig')
     @ApiOperation({ description: 'createBindSystemConfig:创建业务参数配置绑定' })
+    @UseGuards(JwtAuthGuard, PowerGuard)
     async create(@Body() form: SystemConfig, @Req() req: any): Promise<ResponseInfoDto<SystemConfig>> {
         const rsp = new ResponseInfoDto<SystemConfig>(req);
         try {

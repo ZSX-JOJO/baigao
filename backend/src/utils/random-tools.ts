@@ -20,6 +20,10 @@ export const randomNumber = (minNum: number, maxNum: number): number => {
  * @param maxNum ：最大值
  */
 export const randomXNumber = (n: number, minNum: number, maxNum: number): number[] => {
+    const range = maxNum - minNum + 1;
+    if (n > range) {
+        throw new Error(`无法生成 ${n} 个不重复随机数：取值范围仅有 ${range} 个`);
+    }
     const numArr: number[] = [];
     for (let i = 0; i < n; i++) {
         let num = randomNumber(minNum, maxNum);

@@ -234,8 +234,14 @@ export class MemberManagementService {
     }
     async setMemberQR(id: string, QRUrl: string, fileId: string): Promise<any> {
         const member = await this.memberManagementModel.findOne({ _id: new ObjectId(id) }, { fileIds: 1 });
-        member.fileIds.push(fileId);
-        return await this.memberManagementModel.updateOne({ _id: new ObjectId(id) }, { memberQR: QRUrl, fileIds: member.fileIds });
+        if (!member) {
+            throw new Error("会员不存在");
+        }
+        const fileIds = [...(member.fileIds ?? []), fileId];
+        return await this.memberManagementModel.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { memberQR: QRUrl, fileIds } },
+        );
     }
     /**
      * 获取会员分页

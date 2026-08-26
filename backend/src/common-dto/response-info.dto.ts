@@ -63,12 +63,12 @@ export class ResponseInfoDto<T>{
         const FgRed = '\x1b[31m';
         const FgOrange = '\x1b[38;5;208m';
         const tut = Number(((new Date().getTime() - this.startTime.getTime()) / 1000).toFixed(3));
-        if (tut > 1) {
-            return `${FgOrange}【${tut}】s${Reset}`
-        } else if (tut > 10) {
-            return `${FgRed}$【{tut}】s${Reset}`
+        if (tut > 10) {
+            return `${FgRed}【${tut}】s${Reset}`;
+        } else if (tut > 1) {
+            return `${FgOrange}【${tut}】s${Reset}`;
         }
-        return `【${tut}s】`
+        return `【${tut}s】`;
     }
 }
 export enum INFO_STATUS {

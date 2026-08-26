@@ -85,9 +85,10 @@ export const equalMonths = (a: Date, b: Date) => {
  * @returns 
  */
 export const howManyDaysApart = (a: Date, b: Date) => {
-    // 计算相差的天数
-    const dayDiff = b.getDate() - a.getDate();
-    return dayDiff;
+    // 计算相差的天数（按 UTC 日历日，避免跨月/跨年误差）
+    const utcA = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const utcB = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.round((utcB - utcA) / (24 * 60 * 60 * 1000));
 }
 
 /**

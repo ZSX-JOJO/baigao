@@ -302,6 +302,11 @@ export class DevTools {
      * @param moduleName 模型名称，多单词使用“-”隔开
      */
     createModuleDir(moduleName: String) {
+        const name = String(moduleName);
+        // 模块名白名单：仅允许字母/数字/中划线，防路径穿越/任意目录写入
+        if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,49}$/.test(name)) {
+            throw new Error(`非法的模块名: ${name}（仅允许字母/数字/中划线，且不能以中划线开头）`);
+        }
         const path = this.conf.isTemp ? TEMP_PATH_CONF : PATH_CONF;
         if (this.conf.backend) {
             this.savePath.backend = `${path.backend}/${moduleName}`

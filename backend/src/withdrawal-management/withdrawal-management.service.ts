@@ -65,21 +65,20 @@ export class WithdrawalManagementService {
 
     async deleteByUUID(UUID: string): Promise<any> {
         const data = await this.withdrawalManagementModel.findOne({ UUID });
+        if (!data) {
+            throw new Error("数据不存在");
+        }
         if (data.status == DC0013.待审核) {
             throw Error('仅能删除拒绝或通过的提现申请');
         }
-        if (data) {
-            // 删除文件
-            data.fileIds.forEach(k => {
-                try {
-                    this.fileUploadService.delete(k)
-                } catch (error) {
-                    this.logger.error(error);
-                }
-            })
-        } else {
-            throw new Error("数据不存在");
-        }
+        // 删除文件
+        (data.fileIds ?? []).forEach(k => {
+            try {
+                this.fileUploadService.delete(k)
+            } catch (error) {
+                this.logger.error(error);
+            }
+        })
         return this.withdrawalManagementModel.deleteOne({ UUID });
     }
 
@@ -164,6 +163,9 @@ export class WithdrawalManagementService {
     async withdrawalApplication(userPort: string, amount: number, req: any): Promise<any> {
         // TODO 请根据自己实际情况进行修改
         const withdrawal = new WithdrawalManagementDto(userPort, amount, req);
+        // 绑定会员钱包并校验余额（否则 walletBindUserUUID 恒为 undefined 导致扣错钱包）
+        const wallet = await this.walletManagementService.getDetailByBindUserUUID(req.user.UUID);
+        withdrawal.linkWallet(wallet);
         const run = () => new Promise<WithdrawalManagement>(async (res, rej) => {
             const session = await this.transactionHelper.startTransactionAuto();
             session.withTransaction(async () => {
@@ -199,10 +201,13 @@ export class WithdrawalManagementService {
         if (!withdrawal) {
             throw new Error("申请不存在");
         }
+        if (withdrawal.status != DC0013.待审核) {
+            throw new Error("仅待审核的提现申请可拒绝");
+        }
         const run = () => new Promise(async (res, rej) => {
             const session = await this.transactionHelper.startTransactionAuto();
             session.withTransaction(async () => {
-                // 钱包扣款
+                // 钱包退回
                 await this.walletManagementService.linkageIncome(
                     withdrawal.walletBindUserUUID,
                     withdrawal.amount,
@@ -234,6 +239,9 @@ export class WithdrawalManagementService {
         if (!withdrawal) {
             throw new Error("申请不存在");
         }
+        if (withdrawal.status != DC0013.待审核) {
+            throw new Error("仅待审核的提现申请可通过");
+        }
         const run = () => new Promise(async (res, rej) => {
             const session = await this.transactionHelper.startTransactionAuto();
             session.withTransaction(async () => {
@@ -257,7 +265,6 @@ export class WithdrawalManagementService {
                     transferDetail.transfer_remark = `用户提现`;
                 }
                 transferDetails.push(transferDetail);
-                console.log(withdrawal.userSnapshot)
                 const result = await this.weChatApiService.batchesTransfer(
                     withdrawal.withdrawalNo,
                     transferDetail.transfer_remark,

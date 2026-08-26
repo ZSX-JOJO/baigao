@@ -4,7 +4,6 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AdminUserModule } from 'src/admin-user/admin-user.module';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { jwtStrategy } from './strategy/jwt.strategy';
 import { RolePermissionsModule } from 'src/role-permissions/role-permissions.module';
 import { AdminMenuModule } from 'src/admin-menu/admin-menu.module';
@@ -16,9 +15,6 @@ import { EnvConfig } from 'src/utils/env-config';
 const envConfig = new EnvConfig;
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true
-    }),
     JwtModule.register({
       secret: envConfig.JWT_SECRET,
       signOptions: { expiresIn: envConfig.JWT_EXPIRES_IN as any },  //s,m,h,d

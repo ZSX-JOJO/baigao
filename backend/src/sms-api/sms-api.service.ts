@@ -32,9 +32,10 @@ export class SmsApiService {
         }
         const yunPianTplReq = new YunPianTplReq(phone, templateId, templateData);
         yunPianTplReq.apikey = this.smsConf[DC0003.accessKeyId];
-        console.log('【发送短信】', JSON.stringify(yunPianTplReq));
         const res: YunPianTplRes = await yunPianTplReq.send();
+        // 先打码再打日志，避免云片 API 密钥明文泄露
         yunPianTplReq.apikey = '****';
+        console.log('【发送短信】', JSON.stringify(yunPianTplReq));
         this.systemLogService.create('【短信发送】', `请求：${JSON.stringify(yunPianTplReq)},响应${JSON.stringify(res)}`, req)
         return res;
     }

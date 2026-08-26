@@ -41,6 +41,8 @@
     "axios": "^0.27.2",
     "baidu-aip-sdk": "^4.16.13",
     "bull": "4.16.5",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
     "crypto-js": "^4.1.1",
     "ejs": "^3.1.9",
     "express-rate-limit": "8.6.2",

@@ -10,10 +10,12 @@ export class PowerGuard implements CanActivate {
         const request = context.switchToHttp().getRequest();
         const roles = this.reflector.get<string[]>('AuthTag', context.getHandler());
         const user: any = request.user;
-        if (roles) {
-            if (user.menuPowerTagList.includes(roles[0])) {
-                return true;
+        if (roles && roles.length) {
+            const powerTags = user?.menuPowerTagList;
+            if (!Array.isArray(powerTags)) {
+                return false;
             }
+            return roles.every((tag) => powerTags.includes(tag));
         }
         return false;
     }

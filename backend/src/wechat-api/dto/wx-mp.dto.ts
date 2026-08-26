@@ -49,7 +49,6 @@ export class WxMpDto {
                 force_refresh: refresh
             }
         );
-        console.log('获取accessToken结果', data);
         const { access_token, expires_in } = data;
         if (access_token) {
             return { access_token, expires_in }

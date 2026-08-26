@@ -77,10 +77,9 @@ export class RolePermissionsService {
             objectIds.push(new ObjectId(id));
         });
         const roleList = await this.RolePermissionsModel.find({ _id: { $in: objectIds } });
-        // 合并隐藏范围
-        hidePermissionsList = roleList.pop().hidePermissionsList;
+        // 合并隐藏范围（不依赖 pop 副作用，避免空数组/字段缺失崩溃）
         roleList.forEach((role: RolePermissions) => {
-            hidePermissionsList = hidePermissionsList.concat(role.hidePermissionsList)
+            hidePermissionsList = hidePermissionsList.concat(role.hidePermissionsList ?? []);
         });
         return hidePermissionsList;
     }
