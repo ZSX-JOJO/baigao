@@ -47,7 +47,7 @@ export const usePermissionStore = defineStore({
         async getMenuTree() {
             let res;
             try {
-                const { data } = await AdminMenuControllerGetTree();
+                const { data } = await AdminMenuControllerGetTree({ keyWord: "" });
                 res = data;
             } catch (error) {
                 const { response: { status } } = error as any;
@@ -62,7 +62,7 @@ export const usePermissionStore = defineStore({
             } else {
                 alertWarning(res.message);
             }
-            const { data: res2 } = await AdminMenuControllerGetTreeByMenuType('1');
+            const { data: res2 } = await AdminMenuControllerGetTreeByMenuType(1);
             const setMenuDeep = async () => {
                 const tempMenuTree = this.menuTree;
                 let menuDeep: any = {};

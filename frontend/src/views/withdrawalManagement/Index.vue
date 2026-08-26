@@ -100,15 +100,6 @@
             </el-popconfirm>
             <el-button
               v-if="
-                btnShow('adopt-withdrawalManagement') && scope.row.status == 0
-              "
-              @click="openOrderManagement(scope.row)"
-              type="primary"
-            >
-              相关订单
-            </el-button>
-            <el-button
-              v-if="
                 btnShow('refuse-withdrawalManagement') && scope.row.status == 0
               "
               type="danger"

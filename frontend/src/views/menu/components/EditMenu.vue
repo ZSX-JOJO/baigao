@@ -158,12 +158,15 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         form.value.menuActive = "";
       }
       if (addMenu.value) {
-        const { data: res } = await AdminMenuControllerCreate(form.value);
+        const { data: res } = await AdminMenuControllerCreate({
+          ...form.value,
+          sort: Number(form.value.sort),
+        });
         data = res;
       } else {
         const { data: res } = await AdminMenuControllerUpdate(
           updateId.value,
-          form.value
+          { ...form.value, sort: Number(form.value.sort) }
         );
         data = res;
       }

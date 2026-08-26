@@ -17,6 +17,7 @@ import { ArticleManagementModule } from './article-management/article-management
 import { AdManagementModule } from './ad-management/ad-management.module';
 import { SystemConfigModule } from './system-config/system-config.module';
 import { MemberManagementModule } from './member-management/member-management.module';
+import { MemberAddressModule } from './member-address/member-address.module';
 import { WeChatApiModule } from './wechat-api/wechat-api.module';
 import { SmsApiModule } from './sms-api/sms-api.module';
 import { TreeClassificationModule } from './tree-classification/tree-classification.module';
@@ -64,6 +65,7 @@ const envConfig = new EnvConfig();
     AdManagementModule,
     SystemConfigModule,
     MemberManagementModule,
+    MemberAddressModule,
     WeChatApiModule,
     SmsApiModule,
     TreeClassificationModule,

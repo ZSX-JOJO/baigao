@@ -69,8 +69,8 @@ const add = async (row?: any) => {
 
 const roleList = async () => {
 	const { data: res } = await RolePermissionsControllerGetPage({
-		pageSize: currentPageSize.value.toString(),
-		pageIndex: currentPage.value.toString(),
+		pageSize: currentPageSize.value,
+		pageIndex: currentPage.value,
 		keyWord: param.value.keyWord || ''
 	});
 	if (res.status === 1) {

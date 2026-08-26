@@ -45,12 +45,7 @@
 </template>
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import {
-  ExpandTrigger,
-  type FormInstance,
-  type FormRules,
-  type CascaderProps,
-} from "element-plus";
+import type { FormInstance, FormRules, CascaderProps } from "element-plus";
 
 import { alertSuccess, alertWarning } from "@/utils/message";
 import { TreeClassificationDto } from "@/api/dto/TreeClassificationDto";
@@ -81,7 +76,7 @@ const state = ref({
 });
 const areaNameDic: any = {};
 const cascadeProps: CascaderProps = {
-  expandTrigger: ExpandTrigger.HOVER,
+  expandTrigger: "hover",
   value: "code",
   label: "name",
   lazy: true,

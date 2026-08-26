@@ -4,7 +4,6 @@
 */
 import axios from 'axios';
 import type { WalletLogDto } from './dto/WalletLogDto';
-import type { WalletLogDto } from './dto/WalletLogDto';
 
 
 /**

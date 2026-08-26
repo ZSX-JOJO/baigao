@@ -91,7 +91,6 @@ import {
   WalletLogControllerUpdate,
 } from "@/api/WalletLogControllerApi";
 import type { FormInstance, CascaderProps, FormRules } from "element-plus";
-import { ExpandTrigger } from "element-plus";
 import { WalletLogDto } from "@/api/dto/WalletLogDto";
 const emit = defineEmits(["Refresh"]);
 const show = ref(false);

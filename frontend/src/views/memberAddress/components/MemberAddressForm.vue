@@ -85,12 +85,7 @@ import {
   MemberAddressControllerGetDetailById,
   MemberAddressControllerUpdate,
 } from "@/api/MemberAddressControllerApi";
-import {
-  ExpandTrigger,
-  type FormInstance,
-  type CascaderProps,
-  type FormRules,
-} from "element-plus";
+import type { FormInstance, CascaderProps, FormRules } from "element-plus";
 import { MemberAddressDto } from "@/api/dto/MemberAddressDto";
 const emit = defineEmits(["Refresh"]);
 const show = ref(false);
@@ -126,7 +121,7 @@ const administrativeDivisionTreeOptions = ref(new Array<any>());
 const administrativeDivisionSelectName: any = {};
 
 const administrativeDivisionTreeProps: CascaderProps = {
-  expandTrigger: ExpandTrigger.HOVER,
+  expandTrigger: "hover",
   value: "code",
   label: "name",
   lazy: true,

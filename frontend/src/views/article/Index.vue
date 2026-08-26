@@ -90,7 +90,7 @@ export default {
 import { ref, reactive } from "vue";
 import { btnShow } from "../../utils/buttonShow";
 import { Delete, Edit } from "@element-plus/icons-vue";
-import AddArticle from "@/views/article/components/AddArticle.vue";
+import AddArticle from "@/views/article/components/Addarticle.vue";
 import Search from "@/views/article/components/Search.vue";
 import {
   ArticleManagementControllerGetPage,

@@ -79,7 +79,6 @@ import {
   WalletManagementControllerUpdate,
 } from "@/api/WalletManagementControllerApi";
 import type { FormInstance, CascaderProps, FormRules } from "element-plus";
-import { ExpandTrigger } from "element-plus";
 import { WalletManagementDto } from "@/api/dto/WalletManagementDto";
 const emit = defineEmits(["Refresh"]);
 const show = ref(false);

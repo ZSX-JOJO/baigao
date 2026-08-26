@@ -129,6 +129,7 @@ const params = ref({
   pageSize: 10,
   keyWord: "",
   walletUUID: props.walletUUID ?? "",
+  logType: "",
 });
 
 const edit = (item: WalletLogDto) => {
