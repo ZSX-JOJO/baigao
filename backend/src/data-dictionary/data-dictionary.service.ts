@@ -67,7 +67,7 @@ export class DataDictionaryService {
             delete dataDictionary.dicCode;
             delete dataDictionary.dicType;
             // delete dataDictionary.isSystem;
-            return await this.DataDictionaryModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...dataDictionary } });
+            return await this.DataDictionaryModel.updateOne({ _id: new ObjectId(id) }, { $set: dataDictionary });
         } else {
             throw new Error("请填写正确的dicType");
         }

@@ -105,7 +105,7 @@ export class SystemDevService {
     async updateConf(dto: ModuleConf, UUID: string, req: any): Promise<any> {
         dto.updateUser = req?.user?.userName;
         dto.updateDate = new Date();
-        return await this.moduleConf.updateOne({ UUID }, { $set: { ...dto } });
+        return await this.moduleConf.updateOne({ UUID }, { $set: dto });
     }
     async updateField(dto: ModuleField, UUID: string, req: any): Promise<any> {
         dto.updateUser = req?.user?.userName;
@@ -130,7 +130,7 @@ export class SystemDevService {
                         { fieldUUID },
                         { $set: { fieldName, fieldEnName, dom, domDataUrl, dataValueField, dataLabelField, dataChildField, fieldType } },
                         { session })
-                    res(await this.moduleField.updateOne({ UUID }, { $set: { ...dto } }, { session }));
+                    res(await this.moduleField.updateOne({ UUID }, { $set: dto }, { session }));
                 } catch (error) {
                     rej(error);
                 }
@@ -143,7 +143,7 @@ export class SystemDevService {
         dto.updateDate = new Date();
         delete dto.fieldEnName;
         delete dto.fieldUUID;
-        return await this.moduleSearch.findByIdAndUpdate(id, { $set: { ...dto } });
+        return await this.moduleSearch.findByIdAndUpdate(id, { $set: dto });
     }
     async getModuleList(keyWord: string): Promise<ModuleConf[]> {
         if (keyWord) {

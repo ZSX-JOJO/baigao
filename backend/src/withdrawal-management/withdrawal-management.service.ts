@@ -87,7 +87,7 @@ export class WithdrawalManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.withdrawalManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } }, { session });
+        return await this.withdrawalManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: data }, { session });
     }
 
     async updateByUUID(data: WithdrawalManagement, UUID: string, req: any): Promise<any> {
@@ -95,7 +95,7 @@ export class WithdrawalManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.withdrawalManagementModel.updateOne({ UUID }, { $set: { ...data } });
+        return await this.withdrawalManagementModel.updateOne({ UUID }, { $set: data });
     }
 
     async getPage(page: WithdrawalManagementPageDto): Promise<PageResponseDto<WithdrawalManagement>> {

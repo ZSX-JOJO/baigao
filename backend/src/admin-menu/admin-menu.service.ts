@@ -93,7 +93,7 @@ export class AdminMenuService {
         return new this.adminMenuModel(adminMenu).save();
     }
     async update(adminMenu: AdminMenu, id: string): Promise<any> {
-        return await this.adminMenuModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...adminMenu } });
+        return await this.adminMenuModel.updateOne({ _id: new ObjectId(id) }, { $set: adminMenu });
     }
     async getMenuPowerTagListByIds(ids: string[]): Promise<string[]> {
         const menuPowerTagList: string[] = [];

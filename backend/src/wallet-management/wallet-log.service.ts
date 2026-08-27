@@ -50,7 +50,7 @@ export class WalletLogService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.walletLogModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.walletLogModel.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
 
 

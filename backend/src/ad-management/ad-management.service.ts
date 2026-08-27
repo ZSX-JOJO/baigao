@@ -45,7 +45,7 @@ export class AdManagementService {
         adManagement.updateDate = new Date();
         delete adManagement.addDate;
         delete adManagement.addUser;
-        return await this.AdManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...adManagement } });
+        return await this.AdManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: adManagement });
     }
     async getPage(pageForm: AdPageForm): Promise<PageResponseDto<AdManagement>> {
         const keyWord = pageForm?.keyWord ? pageForm?.keyWord : '';

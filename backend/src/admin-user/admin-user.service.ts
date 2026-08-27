@@ -36,7 +36,7 @@ export class AdminUserService {
         if (user) {
             throw new Error("用户名已存在，请重新填写");
         }
-        return await this.AdminUserModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...adminUser } });
+        return await this.AdminUserModel.updateOne({ _id: new ObjectId(id) }, { $set: adminUser });
     }
     async updatePassword(password: string, id: string): Promise<any> {
         return await this.AdminUserModel.updateOne({ _id: new ObjectId(id) }, { $set: { password } });

@@ -31,7 +31,7 @@ export class RolePermissionsService {
         return new this.RolePermissionsModel(RolePermissions).save();
     }
     async update(RolePermissions: RolePermissions, id: string): Promise<any> {
-        return await this.RolePermissionsModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...RolePermissions } });
+        return await this.RolePermissionsModel.updateOne({ _id: new ObjectId(id) }, { $set: RolePermissions });
     }
     async getPage(pageForm: PageRequestDto): Promise<PageResponseDto<RolePermissions>> {
         const keyWord = pageForm?.keyWord ? pageForm?.keyWord : '';

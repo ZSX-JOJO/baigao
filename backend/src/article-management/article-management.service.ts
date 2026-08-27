@@ -44,7 +44,7 @@ export class ArticleManagementService {
         articleManagement.updateDate = new Date();
         delete articleManagement.addDate;
         delete articleManagement.addUser;
-        return await this.ArticleManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...articleManagement } });
+        return await this.ArticleManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: articleManagement });
     }
     async getPage(pageForm: ArticlePageForm, signUpUser?: string): Promise<PageResponseDto<ArticleManagement>> {
         const keyWord = pageForm?.keyWord ? pageForm?.keyWord : '';

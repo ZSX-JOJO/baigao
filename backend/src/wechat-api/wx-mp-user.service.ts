@@ -56,14 +56,14 @@ export class WxMpUserService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.wxMpUserModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.wxMpUserModel.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
     async updateByOpenId(data: WxMpUserDto, openid: string, req: any): Promise<any> {
         data.updateUser = req?.user?.userName;
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.wxMpUserModel.updateOne({ openid }, { $set: { ...data } });
+        return await this.wxMpUserModel.updateOne({ openid }, { $set: data });
     }
 
 

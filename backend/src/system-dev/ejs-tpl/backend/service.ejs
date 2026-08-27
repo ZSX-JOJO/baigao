@@ -67,7 +67,7 @@ export class <%=getBigModuleTitle(moduleConf.nameEn) %>Service {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.<%=getSmallModuleTitle(moduleConf.nameEn) %>Model.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.<%=getSmallModuleTitle(moduleConf.nameEn) %>Model.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
 <% if(conf.config.UUID){ %>
     async updateByUUID(data: <%=getBigModuleTitle(moduleConf.nameEn) %>, UUID: string, req: any): Promise<any> {
@@ -75,7 +75,7 @@ export class <%=getBigModuleTitle(moduleConf.nameEn) %>Service {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.<%=getSmallModuleTitle(moduleConf.nameEn) %>Model.updateOne({ UUID }, { $set: { ...data } });
+        return await this.<%=getSmallModuleTitle(moduleConf.nameEn) %>Model.updateOne({ UUID }, { $set: data });
     }<% } %><% } %>
 <% if(conf.config.query){%><% if(searchListForOther.length) {%>
     async getPage(page: <%=getBigModuleTitle(moduleConf.nameEn) %>PageDto): Promise<PageResponseDto<<%=getBigModuleTitle(moduleConf.nameEn) %>>> {

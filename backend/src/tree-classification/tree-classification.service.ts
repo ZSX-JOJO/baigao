@@ -62,7 +62,7 @@ export class TreeClassificationService {
         delete treeClassification.addDate;
         delete treeClassification.addUser;
         await this.clearCache(treeClassification.dataClass);
-        return await this.TreeClassificationModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...treeClassification } });
+        return await this.TreeClassificationModel.updateOne({ _id: new ObjectId(id) }, { $set: treeClassification });
     }
     async getLastList(dataClass: string, parent?: string): Promise<any[]> {
         if (parent) {
@@ -250,7 +250,7 @@ export class TreeClassificationService {
                     // 自己下移
                     treeClassification.sort += 1;
                 }
-                res(await this.TreeClassificationModel.findByIdAndUpdate(treeClassification._id, { $set: { ...treeClassification } }, { session }));
+                res(await this.TreeClassificationModel.findByIdAndUpdate(treeClassification._id, { $set: treeClassification }, { session }));
             }).catch(err => {
                 console.log(err);
                 rej(err);

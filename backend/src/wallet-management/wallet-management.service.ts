@@ -82,7 +82,7 @@ export class WalletManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.walletManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.walletManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
 
     async updateByUUID(data: WalletManagement, UUID: string, req: any): Promise<any> {
@@ -90,7 +90,7 @@ export class WalletManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.walletManagementModel.updateOne({ UUID }, { $set: { ...data } });
+        return await this.walletManagementModel.updateOne({ UUID }, { $set: data });
     }
 
     async getPage(page: PageRequestDto): Promise<PageResponseDto<WalletManagement>> {
@@ -402,7 +402,7 @@ export class WalletManagementService {
             walletLog.updateDate = new Date();
             walletLog.updateUser = req?.user?.userName;
             walletLog.takeEffect = true;
-            await this.walletLogModel.findByIdAndUpdate(logId, { $set: { ...walletLog } });
+            await this.walletLogModel.findByIdAndUpdate(logId, { $set: walletLog });
         } else {
             throw new Error("钱包不存在");
         }

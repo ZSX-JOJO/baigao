@@ -47,7 +47,7 @@ export class MemberAddressService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.memberAddressModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.memberAddressModel.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
 
 

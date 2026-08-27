@@ -81,7 +81,7 @@ export class MemberManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.memberManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: { ...data } });
+        return await this.memberManagementModel.updateOne({ _id: new ObjectId(id) }, { $set: data });
     }
     /**
      * 修改用户在线状态
@@ -135,7 +135,7 @@ export class MemberManagementService {
         data.updateDate = new Date();
         delete data.addDate;
         delete data.addUser;
-        return await this.memberManagementModel.updateOne({ UUID }, { $set: { ...data } });
+        return await this.memberManagementModel.updateOne({ UUID }, { $set: data });
     }
     async getDetailById(id: string): Promise<MemberManagement> {
         let map: any = { _id: new ObjectId(id) }

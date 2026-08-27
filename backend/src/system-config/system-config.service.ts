@@ -55,7 +55,7 @@ export class SystemConfigService {
         } else {
             systemConfig.isSet = false;
         }
-        return await this.SystemConfigModel.updateOne({ confSelect: confSelect }, { $set: { ...systemConfig } });
+        return await this.SystemConfigModel.updateOne({ confSelect: confSelect }, { $set: systemConfig });
     }
     async getAll(isOpen: boolean = false): Promise<SystemConfig[]> {
         const map: any = {};
